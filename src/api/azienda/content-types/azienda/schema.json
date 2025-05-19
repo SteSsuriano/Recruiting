@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "aziendas",
+  "info": {
+    "singularName": "azienda",
+    "pluralName": "aziendas",
+    "displayName": "Azienda",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nomeAzienda": {
+      "type": "string"
+    },
+    "emailAzienda": {
+      "type": "email"
+    },
+    "passwordAzienda": {
+      "type": "password"
+    },
+    "partitaIva": {
+      "type": "string"
+    }
+  }
+}

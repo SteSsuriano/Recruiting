@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "candidaturas",
+  "info": {
+    "singularName": "candidatura",
+    "pluralName": "candidaturas",
+    "displayName": "Candidatura",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "statoCandidatura": {
+      "type": "enumeration",
+      "enum": [
+        "inviata",
+        "in_revisione",
+        "scartata",
+        "approvata"
+      ]
+    },
+    "offerta_lavorativa": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::offerta-lavorativa.offerta-lavorativa",
+      "inversedBy": "candidaturas"
+    },
+    "candidato": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::candidato.candidato",
+      "inversedBy": "candidaturas"
+    },
+    "curriculum": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::curriculum.curriculum",
+      "inversedBy": "candidaturas"
+    }
+  }
+}

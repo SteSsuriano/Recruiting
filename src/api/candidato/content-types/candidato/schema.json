@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "candidates",
+  "info": {
+    "singularName": "candidato",
+    "pluralName": "candidates",
+    "displayName": "Candidato",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nomeCandidato": {
+      "type": "string"
+    },
+    "cognomeCandidato": {
+      "type": "string"
+    },
+    "emailCandidato": {
+      "type": "email"
+    },
+    "passwordCandidato": {
+      "type": "password"
+    },
+    "attitudiniCandidato": {
+      "type": "text"
+    },
+    "preferenzeCandidato": {
+      "type": "text"
+    },
+    "interessiCandidato": {
+      "type": "text"
+    },
+    "curricula": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::curriculum.curriculum"
+    },
+    "candidaturas": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::candidatura.candidatura",
+      "mappedBy": "candidato"
+    }
+  }
+}

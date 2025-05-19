@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "offerta_lavorativas",
+  "info": {
+    "singularName": "offerta-lavorativa",
+    "pluralName": "offerta-lavorativas",
+    "displayName": "OffertaLavorativa",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "titoloOffertaLavorativa": {
+      "type": "text"
+    },
+    "descrizioneOffertaLavorativa": {
+      "type": "text"
+    },
+    "tipoContratto": {
+      "type": "enumeration",
+      "enum": [
+        "tempo_indeterminato",
+        "tempo_determinato",
+        "part_time",
+        "full_time"
+      ]
+    },
+    "livelloEsperienza": {
+      "type": "enumeration",
+      "enum": [
+        "entry_level",
+        "junior",
+        "middle",
+        "senior"
+      ]
+    },
+    "competenzeRichieste": {
+      "type": "richtext"
+    },
+    "dataPubblicazione": {
+      "type": "datetime"
+    },
+    "dataScadenza": {
+      "type": "datetime"
+    },
+    "candidaturas": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::candidatura.candidatura",
+      "mappedBy": "offerta_lavorativa"
+    },
+    "aziendas": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::azienda.azienda"
+    }
+  }
+}
