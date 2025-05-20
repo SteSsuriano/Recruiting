@@ -1028,10 +1028,14 @@ export interface PluginUsersPermissionsUser
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
+    azienda: Schema.Attribute.Relation<'oneToOne', 'api::azienda.azienda'>;
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    candidato: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::candidato.candidato'
+    >;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     createdAt: Schema.Attribute.DateTime;
