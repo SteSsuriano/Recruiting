@@ -1,0 +1,69 @@
+{
+  "kind": "collectionType",
+  "collectionName": "supporto_cvs",
+  "info": {
+    "singularName": "supporto-cv",
+    "pluralName": "supporto-cvs",
+    "displayName": "SupportoCv",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "dataSupportoCv": {
+      "type": "date"
+    },
+    "form": {
+      "type": "json",
+      "default": {
+        "datiPersonali": {
+          "nome": "",
+          "cognome": "",
+          "dataNascita": "",
+          "indirizzo": "",
+          "telefono": "",
+          "email": ""
+        },
+        "formazione": [
+          {
+            "titoloStudio": "",
+            "istituto": "",
+            "dataInizio": "",
+            "dataFine": "",
+            "descrizione": "",
+            "inCorso": false
+          }
+        ],
+        "esperienzeLavorative": [
+          {
+            "azienda": "",
+            "ruolo": "",
+            "dataInizio": "",
+            "dataFine": "",
+            "descrizione": "",
+            "inCorso": false
+          }
+        ],
+        "competenze": [
+          {
+            "nome": "",
+            "livello": 0
+          }
+        ],
+        "lingue": [
+          {
+            "nome": "",
+            "livello": ""
+          }
+        ]
+      }
+    },
+    "offerta_lavorativa": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::offerta-lavorativa.offerta-lavorativa",
+      "mappedBy": "supporti_cv"
+    }
+  }
+}

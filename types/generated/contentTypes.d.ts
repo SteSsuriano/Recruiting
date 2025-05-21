@@ -563,10 +563,90 @@ export interface ApiOffertaLavorativaOffertaLavorativa
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    supporti_cv: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::supporto-cv.supporto-cv'
+    >;
     tipoContratto: Schema.Attribute.Enumeration<
       ['tempo_indeterminato', 'tempo_determinato', 'part_time', 'full_time']
     >;
     titoloOffertaLavorativa: Schema.Attribute.Text;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSupportoCvSupportoCv extends Struct.CollectionTypeSchema {
+  collectionName: 'supporto_cvs';
+  info: {
+    description: '';
+    displayName: 'SupportoCv';
+    pluralName: 'supporto-cvs';
+    singularName: 'supporto-cv';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    dataSupportoCv: Schema.Attribute.Date;
+    form: Schema.Attribute.JSON &
+      Schema.Attribute.DefaultTo<{
+        competenze: [
+          {
+            livello: 0;
+            nome: '';
+          },
+        ];
+        datiPersonali: {
+          cognome: '';
+          dataNascita: '';
+          email: '';
+          indirizzo: '';
+          nome: '';
+          telefono: '';
+        };
+        esperienzeLavorative: [
+          {
+            azienda: '';
+            dataFine: '';
+            dataInizio: '';
+            descrizione: '';
+            inCorso: false;
+            ruolo: '';
+          },
+        ];
+        formazione: [
+          {
+            dataFine: '';
+            dataInizio: '';
+            descrizione: '';
+            inCorso: false;
+            istituto: '';
+            titoloStudio: '';
+          },
+        ];
+        lingue: [
+          {
+            livello: '';
+            nome: '';
+          },
+        ];
+      }>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::supporto-cv.supporto-cv'
+    > &
+      Schema.Attribute.Private;
+    offerta_lavorativa: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::offerta-lavorativa.offerta-lavorativa'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1091,6 +1171,7 @@ declare module '@strapi/strapi' {
       'api::candidatura.candidatura': ApiCandidaturaCandidatura;
       'api::curriculum.curriculum': ApiCurriculumCurriculum;
       'api::offerta-lavorativa.offerta-lavorativa': ApiOffertaLavorativaOffertaLavorativa;
+      'api::supporto-cv.supporto-cv': ApiSupportoCvSupportoCv;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

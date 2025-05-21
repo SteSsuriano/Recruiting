@@ -54,6 +54,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::azienda.azienda"
+    },
+    "supporti_cv": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::supporto-cv.supporto-cv",
+      "inversedBy": "offerta_lavorativa"
     }
   }
 }
