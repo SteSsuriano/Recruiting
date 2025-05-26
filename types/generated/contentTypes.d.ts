@@ -388,6 +388,7 @@ export interface ApiAziendaAzienda extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    descrizioneAzienda: Schema.Attribute.String;
     emailAzienda: Schema.Attribute.Email;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -399,6 +400,7 @@ export interface ApiAziendaAzienda extends Struct.CollectionTypeSchema {
     partitaIva: Schema.Attribute.String;
     passwordAzienda: Schema.Attribute.Password;
     publishedAt: Schema.Attribute.DateTime;
+    sedeAzienda: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -440,7 +442,7 @@ export interface ApiCandidatoCandidato extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     nomeCandidato: Schema.Attribute.String;
     passwordCandidato: Schema.Attribute.Password;
-    preferenzeCandidato: Schema.Attribute.Text;
+    preferenzeLavorativeCandidato: Schema.Attribute.Text;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
