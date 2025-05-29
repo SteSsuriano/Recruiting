@@ -16,6 +16,7 @@
       "enum": [
         "inviata",
         "in_revisione",
+        "colloquio",
         "scartata",
         "approvata"
       ]

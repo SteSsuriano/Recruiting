@@ -399,6 +399,10 @@ export interface ApiAziendaAzienda extends Struct.CollectionTypeSchema {
     nomeAzienda: Schema.Attribute.String;
     partitaIva: Schema.Attribute.String;
     passwordAzienda: Schema.Attribute.Password;
+    percorso_formativos: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::percorso-formativo.percorso-formativo'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     sedeAzienda: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
@@ -485,7 +489,7 @@ export interface ApiCandidaturaCandidatura extends Struct.CollectionTypeSchema {
     >;
     publishedAt: Schema.Attribute.DateTime;
     statoCandidatura: Schema.Attribute.Enumeration<
-      ['inviata', 'in_revisione', 'scartata', 'approvata']
+      ['inviata', 'in_revisione', 'colloquio', 'scartata', 'approvata']
     >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -573,6 +577,51 @@ export interface ApiOffertaLavorativaOffertaLavorativa
       ['tempo_indeterminato', 'tempo_determinato', 'part_time', 'full_time']
     >;
     titoloOffertaLavorativa: Schema.Attribute.Text;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPercorsoFormativoPercorsoFormativo
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'percorso_formativos';
+  info: {
+    description: '';
+    displayName: 'PercorsoFormativo';
+    pluralName: 'percorso-formativos';
+    singularName: 'percorso-formativo';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    azienda: Schema.Attribute.Relation<'manyToOne', 'api::azienda.azienda'>;
+    certificazioneRilasciata: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    competenzeAcquisite: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    dataFinePercorso: Schema.Attribute.Date;
+    dataInizioPercorso: Schema.Attribute.Date;
+    descrizionePercorso: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::percorso-formativo.percorso-formativo'
+    > &
+      Schema.Attribute.Private;
+    modalitaPercorso: Schema.Attribute.Enumeration<
+      ['in_revisione', 'online', 'ibrida']
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    tipoPercorso: Schema.Attribute.Enumeration<
+      ['tirocinio', 'webinair', 'workshop', 'programma_di_certificazione']
+    >;
+    titoloPercorso: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1173,6 +1222,7 @@ declare module '@strapi/strapi' {
       'api::candidatura.candidatura': ApiCandidaturaCandidatura;
       'api::curriculum.curriculum': ApiCurriculumCurriculum;
       'api::offerta-lavorativa.offerta-lavorativa': ApiOffertaLavorativaOffertaLavorativa;
+      'api::percorso-formativo.percorso-formativo': ApiPercorsoFormativoPercorsoFormativo;
       'api::supporto-cv.supporto-cv': ApiSupportoCvSupportoCv;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

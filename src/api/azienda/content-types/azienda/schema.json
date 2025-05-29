@@ -28,6 +28,12 @@
     },
     "descrizioneAzienda": {
       "type": "string"
+    },
+    "percorso_formativos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::percorso-formativo.percorso-formativo",
+      "mappedBy": "azienda"
     }
   }
 }

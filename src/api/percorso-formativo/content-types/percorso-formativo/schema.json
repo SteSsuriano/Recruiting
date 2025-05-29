@@ -1,0 +1,64 @@
+{
+  "kind": "collectionType",
+  "collectionName": "percorso_formativos",
+  "info": {
+    "singularName": "percorso-formativo",
+    "pluralName": "percorso-formativos",
+    "displayName": "PercorsoFormativo",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "titoloPercorso": {
+      "type": "string"
+    },
+    "descrizionePercorso": {
+      "type": "text"
+    },
+    "competenzeAcquisite": {
+      "type": "text"
+    },
+    "modalitaPercorso": {
+      "type": "enumeration",
+      "enum": [
+        "in_revisione",
+        "online",
+        "ibrida"
+      ]
+    },
+    "tipoPercorso": {
+      "type": "enumeration",
+      "enum": [
+        "tirocinio",
+        "webinair",
+        "workshop",
+        "programma_di_certificazione"
+      ]
+    },
+    "dataInizioPercorso": {
+      "type": "date"
+    },
+    "dataFinePercorso": {
+      "type": "date"
+    },
+    "certificazioneRilasciata": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "azienda": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::azienda.azienda",
+      "inversedBy": "percorso_formativos"
+    }
+  }
+}
